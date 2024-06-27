@@ -1,0 +1,59 @@
+# https://taskfile.dev
+
+version: '3'
+
+dotenv: ['.env']
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+  migrate:
+    cmds:
+      - migrate -path db/migrations -database "postgres://${SHOPEEFUN_PRODUCT_POSTGRES_USER}:${SHOPEEFUN_PRODUCT_POSTGRES_PASSWORD}@${SHOPEEFUN_PRODUCT_POSTGRES_HOST}:${SHOPEEFUN_PRODUCT_POSTGRES_PORT}/${SHOPEEFUN_PRODUCT_POSTGRES_DB}?sslmode=${SHOPEEFUN_PRODUCT_POSTGRES_SSL_MODE}" {{.cmd}}
+  create-migration:
+    cmds:
+      - migrate create -ext sql -dir db/migrations/ -seq {{.name}}
+  dev:
+    cmds:
+      - go run ./cmd/bin/main.go
+  build-win:
+    platforms: [windows/amd64]
+    cmds:
+      - go build -o ./crowners-app.exe ./cmd/bin/main.go
+  build-linux:
+    platforms: [linux/amd64]
+    cmds:
+      - go build -o ./crowners-app ./cmd/bin/main.go
+  build:
+    cmds:
+      - task build-win
+      - task build-linux
+  run-win:
+    cmds:
+      - task build-win
+      - ./crowners-app.exe
+  run-linux:
+    cmds:
+      - task build-linux
+      - ./crowners-app
+  run:
+    cmds:
+      - task run-win
+      - task run-linux
+  consumer:
+    cmds:
+      - go run ./cmd/bin/main.go consumer
+  lint-fix:
+    cmds:
+      - gofmt -w .
+  lint-ci:
+    cmds:
+      - golangci-lint run
+  nats:
+    cmds:
+      - nats-server --js
