@@ -13,5 +13,4 @@ func WithValidator(v *validator.Validator) Option {
 		a.Validator = v
 	}
 }
-
 */

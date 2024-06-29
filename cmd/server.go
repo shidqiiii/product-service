@@ -23,17 +23,18 @@ import (
 // It will initialize the logger, fiber app, and the routes
 // It will also handle graceful shutdown
 func RunServer(cmd *flag.FlagSet, args []string) {
-	envs := infrastructure.Envs
+	var (
+		SERVER_PORT string
+		envs        = infrastructure.Envs
+		flagAppPort = cmd.String("port", "3000", "Application port") // ex: go run main.go server -port=8080
+	)
+
 	logLevel, err := zerolog.ParseLevel(envs.App.LogLevel)
 	if err != nil {
 		logLevel = zerolog.InfoLevel
 	}
 
 	infrastructure.InitializeLogger(envs.App.Environtment, "app.log", logLevel)
-
-	var (
-		flagAppPort = cmd.String("port", "3000", "Application port") // ex: go run main.go server -port=8080
-	)
 
 	if err := cmd.Parse(args); err != nil {
 		log.Fatal().Err(err).Msg("Error while parsing flags")
@@ -49,6 +50,12 @@ func RunServer(cmd *flag.FlagSet, args []string) {
 			Max:        50,
 			Expiration: 30 * time.Second,
 		}))
+	}
+
+	if flagAppPort != nil {
+		SERVER_PORT = *flagAppPort
+	} else {
+		SERVER_PORT = infrastructure.Envs.App.Port
 	}
 
 	// CORS middleware
@@ -69,7 +76,7 @@ func RunServer(cmd *flag.FlagSet, args []string) {
 
 	// Run server in goroutine
 	go func() {
-		if err := app.Listen(":" + *flagAppPort); err != nil {
+		if err := app.Listen(":" + SERVER_PORT); err != nil {
 			log.Fatal().Msgf("Error while starting server: %v", err)
 		}
 	}()

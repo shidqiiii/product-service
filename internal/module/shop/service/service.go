@@ -4,6 +4,9 @@ import (
 	"context"
 	"product-service/internal/module/shop/entity"
 	"product-service/internal/module/shop/ports"
+	"product-service/pkg/errmsg"
+
+	"github.com/rs/zerolog/log"
 )
 
 type shopService struct {
@@ -17,10 +20,29 @@ func NewShopService(r ports.ShopRepository) ports.ShopService {
 }
 
 func (s *shopService) CreateShop(ctx context.Context, req *entity.CreateShopRequest) (entity.UpsertShopResponse, error) {
+	var (
+		res = entity.UpsertShopResponse{}
+	)
+
+	exist, err := s.repo.IsHaveShop(ctx, req.UserId)
+	if err != nil {
+		return res, err
+
+	}
+
+	if exist {
+		log.Warn().Any("payload", req).Msg("service: Creating shop")
+		return res, errmsg.NewCostumErrors(400, errmsg.WithMessage("User already have shop"))
+	}
+
 	result, err := s.repo.CreateShop(ctx, req)
 	if err != nil {
 		return result, err
 	}
 
 	return result, nil
+}
+
+func (s *shopService) DeleteShop(ctx context.Context, req *entity.DeleteShopRequest) error {
+	return s.repo.DeleteShop(ctx, req)
 }

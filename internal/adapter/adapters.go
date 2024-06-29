@@ -21,7 +21,7 @@ type Validator interface {
 }
 
 type Adapter struct {
-	// Driver Adapters
+	// Driving Adapters
 	RestServer *fiber.App
 
 	// Driven Adapters

@@ -4,7 +4,6 @@ import (
 	"context"
 	"product-service/internal/module/shop/entity"
 	"product-service/internal/module/shop/ports"
-	"product-service/pkg/errmsg"
 
 	"github.com/jmoiron/sqlx"
 	"github.com/rs/zerolog/log"
@@ -24,13 +23,6 @@ func (s *shopRepo) CreateShop(ctx context.Context, req *entity.CreateShopRequest
 	var (
 		res = entity.UpsertShopResponse{}
 	)
-
-	if exist, err := s.IsHaveShop(ctx, req.UserId); err != nil {
-		return res, err
-	} else if exist {
-		log.Warn().Any("payload", req).Msg("repository: User already have shop")
-		return res, errmsg.NewCostumErrors(400, errmsg.WithMessage("User already have shop"))
-	}
 
 	query := `
 		INSERT INTO
@@ -69,4 +61,25 @@ func (s *shopRepo) IsHaveShop(ctx context.Context, UserId string) (bool, error) 
 	}
 
 	return exist, nil
+}
+
+func (s *shopRepo) DeleteShop(ctx context.Context, req *entity.DeleteShopRequest) error {
+	query := `
+		UPDATE
+			shops
+		SET
+			deleted_at = NOW()
+		WHERE
+			user_id = $1
+			AND id = $2
+			AND deleted_at IS NULL
+	`
+
+	_, err := s.db.ExecContext(ctx, query, req.UserId, req.Id)
+	if err != nil {
+		log.Error().Err(err).Any("payload", req).Msg("repository: Failed to delete shop")
+		return err
+	}
+
+	return nil
 }

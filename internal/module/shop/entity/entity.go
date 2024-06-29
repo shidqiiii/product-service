@@ -13,6 +13,11 @@ type UpsertShopResponse struct {
 	UpdatedAt string `json:"updated_at"`
 }
 
+type DeleteShopRequest struct {
+	Id     string `query:"id" validate:"required,uuid"`
+	UserId string `query:"user_id" validate:"required,uuid"`
+}
+
 type Meta struct {
 	TotalData int `json:"total_data"`
 	TotalPage int `json:"total_page"`

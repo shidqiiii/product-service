@@ -20,7 +20,7 @@ tasks:
       - migrate create -ext sql -dir db/migrations/ -seq {{.name}}
   dev:
     cmds:
-      - go run ./cmd/bin/main.go
+      - go run ./cmd/bin/main.go -port=5000
   build-win:
     platforms: [windows/amd64]
     cmds:

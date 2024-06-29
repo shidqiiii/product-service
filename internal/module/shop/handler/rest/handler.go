@@ -30,6 +30,7 @@ func NewShopHandler() *shopHandler {
 func (h *shopHandler) Register(router fiber.Router) {
 
 	router.Post("/shops", m.AuthQueryParams, h.createShop)
+	router.Delete("/shops/:id", m.AuthQueryParams, h.deleteShop)
 }
 
 func (h *shopHandler) createShop(c *fiber.Ctx) error {
@@ -61,5 +62,29 @@ func (h *shopHandler) createShop(c *fiber.Ctx) error {
 	}
 
 	return c.Status(fiber.StatusCreated).JSON(response.Success(resp, ""))
+}
 
+func (h *shopHandler) deleteShop(c *fiber.Ctx) error {
+	var (
+		req = &entity.DeleteShopRequest{}
+		ctx = c.Context()
+		v   = adapter.Adapters.Validator
+	)
+
+	req.Id = c.Params("id")
+	req.UserId = c.Query("user_id")
+
+	if err := v.Validate(req); err != nil {
+		log.Warn().Err(err).Any("payload", req).Msg("service: Invalid request body")
+		code, errs := errmsg.Errors(err, req)
+		return c.Status(code).JSON(response.Error(errs))
+	}
+
+	err := h.service.DeleteShop(ctx, req)
+	if err != nil {
+		code, errs := errmsg.Errors(err, req)
+		return c.Status(code).JSON(response.Error(errs))
+	}
+
+	return c.Status(fiber.StatusNoContent).JSON(nil)
 }
