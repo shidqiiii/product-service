@@ -46,3 +46,11 @@ func (s *shopService) CreateShop(ctx context.Context, req *entity.CreateShopRequ
 func (s *shopService) DeleteShop(ctx context.Context, req *entity.DeleteShopRequest) error {
 	return s.repo.DeleteShop(ctx, req)
 }
+
+func (s *shopService) GetShops(ctx context.Context, req *entity.GetShopsRequest) (entity.GetShopsResponse, error) {
+	return s.repo.GetShops(ctx, req)
+}
+
+func (s *shopService) UpdateShop(ctx context.Context, req *entity.UpdateShopRequest) (entity.UpsertShopResponse, error) {
+	return s.repo.UpdateShop(ctx, req)
+}

@@ -31,6 +31,8 @@ func (h *shopHandler) Register(router fiber.Router) {
 
 	router.Post("/shops", m.AuthQueryParams, h.createShop)
 	router.Delete("/shops/:id", m.AuthQueryParams, h.deleteShop)
+	router.Get("/shops", h.getShops)
+	router.Patch("/shops/:id", m.AuthQueryParams, h.updateShop)
 }
 
 func (h *shopHandler) createShop(c *fiber.Ctx) error {
@@ -52,8 +54,6 @@ func (h *shopHandler) createShop(c *fiber.Ctx) error {
 		code, errs := errmsg.Errors(err, req)
 		return c.Status(code).JSON(response.Error(errs))
 	}
-
-	log.Debug().Interface("payload", req).Msg("service: CreateShop")
 
 	resp, err := h.service.CreateShop(ctx, req)
 	if err != nil {
@@ -87,4 +87,63 @@ func (h *shopHandler) deleteShop(c *fiber.Ctx) error {
 	}
 
 	return c.Status(fiber.StatusNoContent).JSON(nil)
+}
+
+func (h *shopHandler) getShops(c *fiber.Ctx) error {
+	var (
+		req = &entity.GetShopsRequest{}
+		ctx = c.Context()
+		v   = adapter.Adapters.Validator
+	)
+
+	if err := c.QueryParser(req); err != nil {
+		log.Error().Err(err).Msg("service: Failed to parse request query")
+		return c.Status(fiber.StatusBadRequest).JSON(response.Error(err))
+	}
+
+	req.SetDefaults()
+
+	if err := v.Validate(req); err != nil {
+		log.Warn().Err(err).Any("payload", req).Msg("service: Invalid request query")
+		code, errs := errmsg.Errors(err, req)
+		return c.Status(code).JSON(response.Error(errs))
+	}
+
+	resp, err := h.service.GetShops(ctx, req)
+	if err != nil {
+		code, errs := errmsg.Errors(err, req)
+		return c.Status(code).JSON(response.Error(errs))
+	}
+
+	return c.Status(fiber.StatusOK).JSON(response.Success(resp, ""))
+}
+
+func (h *shopHandler) updateShop(c *fiber.Ctx) error {
+	var (
+		req = &entity.UpdateShopRequest{}
+		ctx = c.Context()
+		v   = adapter.Adapters.Validator
+	)
+
+	req.Id = c.Params("id")
+	req.UserId = c.Query("user_id")
+
+	if err := c.BodyParser(req); err != nil {
+		log.Error().Err(err).Msg("service: Failed to parse request body")
+		return c.Status(fiber.StatusBadRequest).JSON(response.Error(err))
+	}
+
+	if err := v.Validate(req); err != nil {
+		log.Warn().Err(err).Any("payload", req).Msg("service: Invalid request body")
+		code, errs := errmsg.Errors(err, req)
+		return c.Status(code).JSON(response.Error(errs))
+	}
+
+	resp, err := h.service.UpdateShop(ctx, req)
+	if err != nil {
+		code, errs := errmsg.Errors(err, req)
+		return c.Status(code).JSON(response.Error(errs))
+	}
+
+	return c.Status(fiber.StatusOK).JSON(response.Success(resp, ""))
 }

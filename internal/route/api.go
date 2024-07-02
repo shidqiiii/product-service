@@ -1,6 +1,7 @@
 package route
 
 import (
+	productHandler "product-service/internal/module/product/handler/rest"
 	shopHandler "product-service/internal/module/shop/handler/rest"
 
 	"product-service/pkg/response"
@@ -12,6 +13,7 @@ func SetupRoutes(app *fiber.App) {
 	// add /api prefix to all routes
 	api := app.Group("/api")
 	shopHandler.NewShopHandler().Register(api)
+	productHandler.NewProductHandler().Register(api)
 
 	// health check route
 	api.Get("/health", func(c *fiber.Ctx) error {
