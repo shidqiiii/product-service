@@ -1,0 +1,1193 @@
+{
+	"info": {
+		"_postman_id": "4ed24f41-34cb-4347-a967-1ca78d806ed8",
+		"name": "ao-product-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33287292"
+	},
+	"item": [
+		{
+			"name": "shops",
+			"item": [
+				{
+					"name": "get shops",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/shops?shop_name=Larkin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shops"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"disabled": true
+								},
+								{
+									"key": "shop_name",
+									"value": "Larkin"
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "default: 1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "default: 2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get shops",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/shops",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4",
+											"disabled": true
+										},
+										{
+											"key": "shop_name",
+											"value": "pur",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "",
+											"description": "default: 1",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "default: 2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 08:00:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "589"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"5a735134-75fc-4684-8a7a-e9f6bbf1e604\",\n                \"user_id\": \"84095313-f3dc-4529-b869-24bb5c77c1a4\",\n                \"name\": \"Prosacco - Purdy\",\n                \"created_at\": \"2024-06-26T07:51:42.6808Z\",\n                \"updated_at\": \"2024-06-26T07:51:42.6808Z\",\n                \"deleted_at\": null\n            },\n            {\n                \"id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n                \"user_id\": \"84095313-f3dc-4529-b869-24bb5c77c1a4\",\n                \"name\": \"ShopyFun\",\n                \"created_at\": \"2024-06-26T05:34:25.165118Z\",\n                \"updated_at\": \"2024-06-26T05:34:25.165118Z\",\n                \"deleted_at\": null\n            }\n        ],\n        \"meta\": {\n            \"total_data\": 2,\n            \"total_page\": 1,\n            \"page\": 1,\n            \"limit\": 10\n        }\n    },\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "create shop",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/shops?user_id=84095313-f3dc-4529-b869-24bb5c77c1a5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shops"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84095313-f3dc-4529-b869-24bb5c77c1a5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create shop",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/shops?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 07:51:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "283"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"5a735134-75fc-4684-8a7a-e9f6bbf1e604\",\n        \"user_id\": \"84095313-f3dc-4529-b869-24bb5c77c1a4\",\n        \"name\": \"Prosacco - Purdy\",\n        \"created_at\": \"2024-06-26T07:51:42.6808Z\",\n        \"updated_at\": \"2024-06-26T07:51:42.6808Z\"\n    },\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "create shop (fk contstraint)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"somethingShop\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/shops?user_id={{$randomUUID}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "{{$randomUUID}}"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 07:48:03 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "111"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"user_id\": [\n            \"invalid user id.\"\n        ]\n    },\n    \"message\": \"Your request has been failed to process\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "create shop (name is required)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/shops?user_id={{$randomUUID}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "{{$randomUUID}}"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 07:49:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"name\": [\n            \"name is required.\"\n        ]\n    },\n    \"message\": \"Your request has been failed to process\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "create shop (user can create one shop only)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/shops?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 07:58:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {},\n    \"message\": \"A user can only have one shop\",\n    \"success\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "update shop",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/shops/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shops",
+								":id"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1cfee2df-07b6-440d-88d8-4f1c7c2df525"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update shop",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/shops/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops",
+										":id"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1cfee2df-07b6-440d-88d8-4f1c7c2df525"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 08:28:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "296"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n        \"user_id\": \"84095313-f3dc-4529-b869-24bb5c77c1a4\",\n        \"name\": \"Kuphal, Larkin and Renner\",\n        \"created_at\": \"2024-06-26T05:34:25.165118Z\",\n        \"updated_at\": \"2024-06-26T08:28:26.722623Z\"\n    },\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "update shop (not found or deleted)",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/shops/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops",
+										":id"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5a735134-75fc-4684-8a7a-e9f6bbf1e604"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 08:30:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {},\n    \"message\": \"Shop not found or already deleted\",\n    \"success\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "delete shop",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/shops/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"shops",
+								":id"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5a735134-75fc-4684-8a7a-e9f6bbf1e604"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete shop",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/shops/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"shops",
+										":id"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5a735134-75fc-4684-8a7a-e9f6bbf1e604"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Jun 2024 08:06:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "get products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "shop_id",
+									"value": "77c7294e-8dce-4559-a876-a1489da27dc0",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "a4b9cf89-333e-4a3e-9024-e85a3f5a2702",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "price_min",
+									"value": "300",
+									"disabled": true
+								},
+								{
+									"key": "price_max",
+									"value": "500",
+									"disabled": true
+								},
+								{
+									"key": "is_available",
+									"value": "",
+									"description": "between: true, false, (all if empty)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "shop_id",
+											"value": "77c7294e-8dce-4559-a876-a1489da27dc0",
+											"disabled": true
+										},
+										{
+											"key": "category_id",
+											"value": "a4b9cf89-333e-4a3e-9024-e85a3f5a2702",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "price_min",
+											"value": "200",
+											"disabled": true
+										},
+										{
+											"key": "price_max",
+											"value": "500",
+											"disabled": true
+										},
+										{
+											"key": "is_available",
+											"value": "",
+											"description": "between: true, false, (all if empty)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Jun 2024 20:20:46 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1726"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"9a31c86b-69fa-403d-b566-6fbecc9fee3a\",\n                \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\n                \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n                \"name\": \"Fantastic Frozen Bacon\",\n                \"image_url\": \"http://placeimg.com/640/480\",\n                \"price\": 960.9,\n                \"created_at\": \"2024-06-29T20:10:08.117922Z\",\n                \"updated_at\": \"2024-06-29T20:10:08.117922Z\"\n            },\n            {\n                \"id\": \"bb353f11-7eb9-414f-9d62-b17b3aeb9428\",\n                \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\n                \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n                \"name\": \"Handmade Soft Chair\",\n                \"image_url\": \"http://placeimg.com/640/480\",\n                \"price\": 804.97,\n                \"created_at\": \"2024-06-29T19:35:26.98209Z\",\n                \"updated_at\": \"2024-06-29T19:35:26.98209Z\"\n            },\n            {\n                \"id\": \"f0b99869-b2f4-4a34-b249-73d01cdbc02f\",\n                \"category_id\": \"a4b9cf89-333e-4a3e-9024-e85a3f5a2702\",\n                \"shop_id\": \"77c7294e-8dce-4559-a876-a1489da27dc0\",\n                \"name\": \"Handmade Fresh Computer\",\n                \"image_url\": \"http://placeimg.com/640/480\",\n                \"price\": 261.89,\n                \"created_at\": \"2024-06-29T19:34:49.46131Z\",\n                \"updated_at\": \"2024-06-29T19:34:49.46131Z\"\n            },\n            {\n                \"id\": \"ca26b2f9-9f53-4f0c-96a8-2abd8c92acc4\",\n                \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\n                \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n                \"name\": \"Small Plastic Pants\",\n                \"image_url\": \"http://placeimg.com/640/480\",\n                \"price\": 710.17,\n                \"created_at\": \"2024-06-29T19:34:24.480369Z\",\n                \"updated_at\": \"2024-06-29T19:34:24.480369Z\"\n            },\n            {\n                \"id\": \"88ddab9a-1f9a-4dd0-9fd1-89ba17ba3fca\",\n                \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\n                \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n                \"name\": \"Handmade Soft Ball\",\n                \"image_url\": null,\n                \"price\": 281.7,\n                \"created_at\": \"2024-06-29T19:31:43.239233Z\",\n                \"updated_at\": \"2024-06-29T19:31:43.239233Z\"\n            }\n        ],\n        \"meta\": {\n            \"total_data\": 5,\n            \"total_page\": 1,\n            \"page\": 1,\n            \"limit\": 10\n        }\n    },\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "get product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "88ddab9a-1f9a-4dd0-9fd1-89ba17ba3fca"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "88ddab9a-1f9a-4dd0-9fd1-89ba17ba3fca"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Jun 2024 20:25:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "501"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"88ddab9a-1f9a-4dd0-9fd1-89ba17ba3fca\",\n        \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\n        \"user_id\": \"84095313-f3dc-4529-b869-24bb5c77c1a4\",\n        \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n        \"category\": \"sports equipment\",\n        \"name\": \"Handmade Soft Ball\",\n        \"description\": null,\n        \"image_url\": null,\n        \"price\": 281.7,\n        \"stock\": 204,\n        \"created_at\": \"2024-06-29T19:31:43.239233Z\",\n        \"updated_at\": \"2024-06-29T19:31:43.239233Z\",\n        \"deleted_at\": null\n    },\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "create products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\r\n    \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\r\n    \"name\": \"{{$randomProductName}}\",\r\n    \"price\": {{$randomPrice}},\r\n    \"stock\": {{$randomInt}},\r\n    \"description\": \"{{$randomLoremWords}}\", // optional\r\n    \"image_url\": \"{{$randomImageUrl}}\" // optional\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/products?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create products",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\r\n    \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\r\n    \"name\": \"{{$randomProductName}}\",\r\n    \"price\": {{$randomPrice}},\r\n    \"stock\": {{$randomInt}},\r\n    \"description\": \"{{$randomLoremWords}}\", // optional\r\n    \"image_url\": \"{{$randomImageUrl}}\" // optional\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/products?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Jun 2024 20:10:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "443"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"9a31c86b-69fa-403d-b566-6fbecc9fee3a\",\n        \"user_id\": \"84095313-f3dc-4529-b869-24bb5c77c1a4\",\n        \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n        \"name\": \"Fantastic Frozen Bacon\",\n        \"description\": \"nam sit explicabo\",\n        \"image_url\": \"http://placeimg.com/640/480\",\n        \"price\": 960.9,\n        \"stock\": 83,\n        \"created_at\": \"2024-06-29T20:10:08.117922Z\",\n        \"updated_at\": \"2024-06-29T20:10:08.117922Z\"\n    },\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "create products (not shop owner)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\r\n    \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\r\n    \"name\": \"{{$randomProductName}}\",\r\n    \"price\": {{$randomPrice}},\r\n    \"stock\": {{$randomInt}},\r\n    \"description\": \"{{$randomLoremWords}}\", // optional\r\n    \"image_url\": \"{{$randomImageUrl}}\" // optional\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/products?user_id={{$randomUUID}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "{{$randomUUID}}"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Jun 2024 20:08:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {},\n    \"message\": \"User is not shop owner\",\n    \"success\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "431d3756-43a2-4a32-91d3-c82388d198de"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete product",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/products/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "431d3756-43a2-4a32-91d3-c82388d198de"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Jun 2024 20:52:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\r\n    \"name\": \"{{$randomProductName}}\",\r\n    \"price\": {{$randomPrice}},\r\n    \"stock\": {{$randomInt}},\r\n    \"description\": \"{{$randomLoremWords}}\", // optional\r\n    \"image_url\": \"{{$randomImageUrl}}\" // optional\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/products/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "88ddab9a-1f9a-4dd0-9fd1-89ba17ba3fca"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update product",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": \"320ffcf7-c59e-491b-a52b-d1a13d2654e0\",\r\n    \"name\": \"{{$randomProductName}}\",\r\n    \"price\": {{$randomPrice}},\r\n    \"stock\": {{$randomInt}},\r\n    \"description\": \"{{$randomLoremWords}}\", // optional\r\n    \"image_url\": \"{{$randomImageUrl}}\" // optional\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/products/:id?user_id=84095313-f3dc-4529-b869-24bb5c77c1a4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84095313-f3dc-4529-b869-24bb5c77c1a4"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "88ddab9a-1f9a-4dd0-9fd1-89ba17ba3fca"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 29 Jun 2024 21:14:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "450"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"88ddab9a-1f9a-4dd0-9fd1-89ba17ba3fca\",\n        \"user_id\": \"84095313-f3dc-4529-b869-24bb5c77c1a4\",\n        \"shop_id\": \"1cfee2df-07b6-440d-88d8-4f1c7c2df525\",\n        \"name\": \"Unbranded Fresh Gloves\",\n        \"description\": \"minima ab perspiciatis\",\n        \"image_url\": \"http://placeimg.com/640/480\",\n        \"price\": 610.66,\n        \"stock\": 233,\n        \"created_at\": \"2024-06-29T19:31:43.239233Z\",\n        \"updated_at\": \"2024-06-29T21:14:24.204261Z\"\n    },\n    \"message\": \"Your request has been successfully processed\",\n    \"success\": true\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

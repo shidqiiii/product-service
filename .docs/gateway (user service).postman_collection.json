@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "a019e938-7cf0-420f-8fb3-5dab672c5fd5",
+		"name": "gateway (user service)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33287292"
+	},
+	"item": [
+		{
+			"name": "create shop",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6Im1pbGFucnlhbkBxdWlnbGV5Lm5ldCIsIlVzZXJJRCI6IjQyZmZhYzllLTcxZTEtNDg2Yy1iM2ExLWZiZjIwMDgzODg1MSIsImlzcyI6InVzZXJfbG9naW4iLCJzdWIiOiJzaG9waWZ1biIsImV4cCI6MTcxOTQxMTU4MSwibmJmIjoxNzE5NDEwMzgxLCJpYXQiOjE3MTk0MTAzODEsImp0aSI6ImMyZjU5M2NkLTNhM2EtNDY3ZC05NTVlLWVlYTAyZWNiZDZhNCJ9.o8cx2ZkE5dzgjcSzdcxjiQ_Lr24VPUFrzxQkV2TW8ag",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9990/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9990",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"milanryan@quigley.net\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9990/users/signin/email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9990",
+					"path": [
+						"users",
+						"signin",
+						"email"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
