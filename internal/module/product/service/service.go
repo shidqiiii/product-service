@@ -54,15 +54,6 @@ func (p *productService) GetProducts(ctx context.Context, req *entity.GetProduct
 	return res, nil
 }
 
-func (p *productService) GetProduct(ctx context.Context, req *entity.GetProductRequest) (entity.GetProductResponse, error) {
-	res, err := p.repo.GetProduct(ctx, req)
-	if err != nil {
-		return res, err
-	}
-
-	return res, nil
-}
-
 func (p *productService) UpdateProduct(ctx context.Context, req *entity.UpdateProductRequest) (entity.UpsertProductResponse, error) {
 	var res entity.UpsertProductResponse
 

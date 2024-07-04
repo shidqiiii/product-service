@@ -47,26 +47,6 @@ type DeleteProductRequest struct {
 	UserId    string `query:"user_id" validate:"required,uuid"`
 }
 
-type GetProductRequest struct {
-	ProductId string `params:"product_id" validate:"required,uuid"`
-}
-
-type GetProductResponse struct {
-	Id          string     `json:"id" db:"id"`
-	CategoryId  string     `json:"category_id" db:"category_id"`
-	UserId      string     `json:"user_id" db:"user_id"`
-	ShopId      string     `json:"shop_id" db:"shop_id"`
-	Category    string     `json:"category" db:"category"`
-	Name        string     `json:"name" db:"name"`
-	Description *string    `json:"description" db:"description"`
-	ImageUrl    *string    `json:"image_url" db:"image_url"`
-	Price       float64    `json:"price" db:"price"`
-	Stock       int        `json:"stock" db:"stock"`
-	CreatedAt   time.Time  `json:"created_at" db:"created_at"`
-	UpdatedAt   time.Time  `json:"updated_at" db:"updated_at"`
-	DeleteAt    *time.Time `json:"deleted_at" db:"deleted_at"`
-}
-
 type GetProductsRequest struct {
 	ShopId      string `query:"shop_id" validate:"omitempty,uuid"`
 	CategoryId  string `query:"category_id" validate:"omitempty,uuid"`

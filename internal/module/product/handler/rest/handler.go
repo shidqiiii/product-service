@@ -29,7 +29,6 @@ func NewProductHandler() *producthandler {
 
 func (h *producthandler) Register(router fiber.Router) {
 	router.Get("/products", h.getProducts)
-	router.Get("/products/:id", h.getProduct)
 
 	router.Post("/products", m.AuthQueryParams, h.createProduct)
 	router.Patch("/products/:id", m.AuthQueryParams, h.updateProduct)
@@ -146,30 +145,6 @@ func (h *producthandler) getProducts(c *fiber.Ctx) error {
 	}
 
 	resp, err := h.service.GetProducts(ctx, req)
-	if err != nil {
-		code, errs := errmsg.Errors(err, req)
-		return c.Status(code).JSON(response.Error(errs))
-	}
-
-	return c.Status(fiber.StatusOK).JSON(response.Success(resp, ""))
-}
-
-func (h *producthandler) getProduct(c *fiber.Ctx) error {
-	var (
-		req = &entity.GetProductRequest{}
-		ctx = c.Context()
-		v   = adapter.Adapters.Validator
-	)
-
-	req.ProductId = c.Params("id")
-
-	if err := v.Validate(req); err != nil {
-		log.Warn().Err(err).Any("payload", req).Msg("service: Invalid request query")
-		code, errs := errmsg.Errors(err, req)
-		return c.Status(code).JSON(response.Error(errs))
-	}
-
-	resp, err := h.service.GetProduct(ctx, req)
 	if err != nil {
 		code, errs := errmsg.Errors(err, req)
 		return c.Status(code).JSON(response.Error(errs))

@@ -160,50 +160,6 @@ func (p *productRepository) GetProducts(ctx context.Context, req *entity.GetProd
 	return res, nil
 }
 
-func (p *productRepository) GetProduct(ctx context.Context, req *entity.GetProductRequest) (entity.GetProductResponse, error) {
-	var (
-		res entity.GetProductResponse
-	)
-
-	query := `
-		SELECT
-			p.id,
-			p.category_id,
-			u.id AS user_id,
-			p.shop_id,
-			c.name AS category,
-			p.name,
-			p.image_url,
-			p.price,
-			p.stock,
-			p.created_at,
-			p.updated_at
-		FROM
-			products p
-		LEFT JOIN
-			product_categories c ON p.category_id = c.id
-		LEFT JOIN
-			shops s ON p.shop_id = s.id
-		LEFT JOIN
-			users u ON s.user_id = u.id
-		WHERE
-			p.id = $1
-			AND p.deleted_at IS NULL
-	`
-
-	err := p.db.GetContext(ctx, &res, query, req.ProductId)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			log.Warn().Any("payload", req).Msg("repository: Product not found")
-			return res, errmsg.NewCostumErrors(404, errmsg.WithMessage("Product not found"))
-		}
-		log.Error().Err(err).Any("payload", req).Msg("repository: GetProduct failed")
-		return res, err
-	}
-
-	return res, nil
-}
-
 func (p *productRepository) UpdateProduct(ctx context.Context, req *entity.UpdateProductRequest) (entity.UpsertProductResponse, error) {
 	var (
 		res entity.UpsertProductResponse
