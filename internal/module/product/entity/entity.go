@@ -60,6 +60,8 @@ type GetProductsRequest struct {
 
 	PriceMin float64
 	PriceMax float64
+
+	Brand string `query:"brand"`
 }
 
 type GetProductRequestById struct {
@@ -76,6 +78,7 @@ type GetProductResponseById struct {
 	ImageUrl    *string    `json:"image_url" db:"image_url"`
 	Price       float64    `json:"price" db:"price"`
 	Stock       int        `json:"stock" db:"stock"`
+	Brand       string     `json:"brand" db:"brand"`
 	CreatedAt   time.Time  `json:"created_at" db:"created_at"`
 	UpdatedAt   time.Time  `json:"updated_at" db:"updated_at"`
 	DeleteAt    *time.Time `json:"deleted_at" db:"deleted_at"`
@@ -135,6 +138,7 @@ type Product struct {
 	Name       string    `json:"name" db:"name"`
 	ImageUrl   *string   `json:"image_url" db:"image_url"`
 	Price      float64   `json:"price" db:"price"`
+	Brand      string    `json:"brand" db:"brand"`
 	CreatedAt  time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt  time.Time `json:"updated_at" db:"updated_at"`
 }

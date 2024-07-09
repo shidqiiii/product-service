@@ -83,6 +83,7 @@ func (p *productRepository) GetProducts(ctx context.Context, req *entity.GetProd
 			name,
 			image_url,
 			price,
+			brand,
 			created_at,
 			updated_at
 		FROM
@@ -120,6 +121,11 @@ func (p *productRepository) GetProducts(ctx context.Context, req *entity.GetProd
 		query += " AND stock > 0"
 	}
 
+	if req.Brand != "" {
+		query += " AND brand ILIKE '%' || :brand || '%'"
+		arg["brand"] = req.Brand
+	}
+
 	query += `
 		ORDER BY created_at DESC
 		LIMIT :limit
@@ -127,6 +133,8 @@ func (p *productRepository) GetProducts(ctx context.Context, req *entity.GetProd
 	`
 	arg["limit"] = req.Limit
 	arg["offset"] = (req.Page - 1) * req.Limit
+
+	log.Print(query)
 
 	nstmt, err := p.db.PrepareNamedContext(ctx, query)
 	if err != nil {
@@ -149,6 +157,7 @@ func (p *productRepository) GetProducts(ctx context.Context, req *entity.GetProd
 			Name:       d.Name,
 			ImageUrl:   d.ImageUrl,
 			Price:      d.Price,
+			Brand:      d.Brand,
 			CreatedAt:  d.CreatedAt,
 			UpdatedAt:  d.UpdatedAt,
 		})
@@ -302,6 +311,7 @@ func (p *productRepository) GetProductById(ctx context.Context, req *entity.GetP
 		image_url,
 		stock,
 		price,
+		brand,
 		created_at,
 		updated_at
 	FROM
@@ -319,6 +329,7 @@ func (p *productRepository) GetProductById(ctx context.Context, req *entity.GetP
 		&res.ImageUrl,
 		&res.Stock,
 		&res.Price,
+		&res.Brand,
 		&res.CreatedAt,
 		&res.UpdatedAt,
 	)
