@@ -88,3 +88,12 @@ func (p *productService) DeleteProduct(ctx context.Context, req *entity.DeletePr
 
 	return p.repo.DeleteProduct(ctx, req)
 }
+
+func (p *productService) GetProductById(ctx context.Context, req *entity.GetProductRequestById) (entity.GetProductResponseById, error) {
+	res, err := p.repo.GetProductById(ctx, req)
+	if err != nil {
+		return res, err
+	}
+
+	return res, nil
+}

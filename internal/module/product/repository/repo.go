@@ -286,3 +286,51 @@ func (p *productRepository) IsProductOwner(ctx context.Context, userId, productI
 
 	return isOwner, nil
 }
+
+func (p *productRepository) GetProductById(ctx context.Context, req *entity.GetProductRequestById) (entity.GetProductResponseById, error) {
+	var (
+		res entity.GetProductResponseById
+	)
+
+	query := `
+	SELECT
+		id,
+		shop_id,
+		category_id,
+		name,
+		description,
+		image_url,
+		stock,
+		price,
+		created_at,
+		updated_at
+	FROM
+		products
+	WHERE
+		id = $1
+	`
+
+	row := p.db.QueryRowContext(ctx, query, req.ProductId)
+	err := row.Scan(&res.Id,
+		&res.ShopId,
+		&res.CategoryId,
+		&res.Name,
+		&res.Description,
+		&res.ImageUrl,
+		&res.Stock,
+		&res.Price,
+		&res.CreatedAt,
+		&res.UpdatedAt,
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			log.Warn().Any("payload", req).Msg("repository: Product not found")
+			return res, errmsg.NewCostumErrors(404, errmsg.WithMessage("Product not found"))
+		}
+		log.Error().Err(err).Any("payload", req).Msg("repository: GetProduct failed")
+		return res, err
+	}
+
+	return res, nil
+
+}

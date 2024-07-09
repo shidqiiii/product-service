@@ -62,6 +62,25 @@ type GetProductsRequest struct {
 	PriceMax float64
 }
 
+type GetProductRequestById struct {
+	ProductId string `params:"product_id" validate:"required,uuid"`
+}
+
+type GetProductResponseById struct {
+	Id          string     `json:"id" db:"id"`
+	CategoryId  string     `json:"category_id" db:"category_id"`
+	ShopId      string     `json:"shop_id" db:"shop_id"`
+	Category    string     `json:"category" db:"category"`
+	Name        string     `json:"name" db:"name"`
+	Description *string    `json:"description" db:"description"`
+	ImageUrl    *string    `json:"image_url" db:"image_url"`
+	Price       float64    `json:"price" db:"price"`
+	Stock       int        `json:"stock" db:"stock"`
+	CreatedAt   time.Time  `json:"created_at" db:"created_at"`
+	UpdatedAt   time.Time  `json:"updated_at" db:"updated_at"`
+	DeleteAt    *time.Time `json:"deleted_at" db:"deleted_at"`
+}
+
 func (r *GetProductsRequest) SetDefaults() {
 	if r.Page < 1 {
 		r.Page = 1

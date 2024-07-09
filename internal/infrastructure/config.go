@@ -15,7 +15,7 @@ var (
 type Config struct {
 	App struct {
 		Environtment string `env:"APP_ENV" env-default:"development"`
-		Port         string `env:"APP_PORT" env-default:"3000"`
+		Port         string `env:"APP_PORT" env-default:"8080"`
 		LogLevel     string `env:"APP_LOG_LEVEL" env-default:"debug"`
 	}
 	DB struct {

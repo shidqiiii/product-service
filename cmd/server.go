@@ -26,7 +26,7 @@ func RunServer(cmd *flag.FlagSet, args []string) {
 	var (
 		SERVER_PORT string
 		envs        = infrastructure.Envs
-		flagAppPort = cmd.String("port", "3000", "Application port") // ex: go run main.go server -port=8080
+		flagAppPort = cmd.String("port", "8080", "Application port") // ex: go run main.go server -port=8080
 	)
 
 	logLevel, err := zerolog.ParseLevel(envs.App.LogLevel)
